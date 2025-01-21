@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recommendation</h1>
+    <script>
+    // Hardcoded file path for local file, assuming it's in the same directory as the HTML
+    const filePath = 'salaries-by-college-type.csv';  // Change this to the actual file path
+
+    // Fetch the CSV file directly
+    fetch(filePath)
+      .then(response => response.text())  // Read as text
+      .then(csvData => {
+        // Convert CSV to JSON
+        const json = csvToJson(csvData);
+        console.log(json);  // Log JSON data to the console
+      })
+      .catch(error => console.error('Error loading CSV:', error));
+
+    // Function to convert CSV to JSON
+    function csvToJson(csvData) {
+      const rows = csvData.split('\n');  // Split by rows
+      const headers = rows[0].split(',');  // Get headers from first row
+
+      return rows.slice(1).map(row => {
+        const columns = row.split(',');
+        const obj = {};
+
+        headers.forEach((header, index) => {
+          obj[header.trim()] = columns[index] ? columns[index].trim() : '';  // Assign data to headers
+        });
+
+        return obj;
+      });
+    }
+    </script>
+</body>
+</html>
+

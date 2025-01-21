@@ -1,0 +1,7 @@
+This is for references. 
+
+parsing a csv file = https://www.youtube.com/watch?v=5HGBG9AiIzo
+got the code for parsing from this website - https://www.npmjs.com/package/csv-parser
+
+in cmd- npm init -y 
+npm i csv-parser
